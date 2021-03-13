@@ -1,8 +1,10 @@
 package com.kabricks.flashcards
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import com.kabricks.flashcards.database.CurrentScore
 import com.kabricks.flashcards.database.FlashCardsDatabase
@@ -53,5 +55,9 @@ class MainActivity : AppCompatActivity() {
         currentScoreModel.previous_score = 0
 
         database.currentScoreDao.insert(currentScoreModel)
+    }
+
+    fun addCard(view: View) {
+        startActivity(Intent(this, AddCardActivity::class.java))
     }
 }
