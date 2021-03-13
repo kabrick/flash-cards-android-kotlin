@@ -1,5 +1,6 @@
 package com.kabricks.flashcards
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -18,12 +19,22 @@ class MainActivity : AppCompatActivity() {
         database = FlashCardsDatabase.getInstance(this)
 
         val thread = Thread {
-            val lastScore: Int? = database.currentScoreDao.getLastRecord()?.score
+            val currentScore: CurrentScore? = database.currentScoreDao.getLastRecord()
+            val currentScoreNumber: Int? = currentScore?.score
+            val lastScore: Int? = currentScore?.previous_score
 
-            if (lastScore === null) {
+            if (currentScoreNumber === null) {
                 initializeDatabase()
             } else {
-                currentScoreTextView.setText(lastScore.toString())
+                currentScoreTextView.setText(currentScoreNumber.toString())
+
+                if (currentScoreNumber > lastScore!!) {
+                    currentScoreTextView.setTextColor(Color.parseColor("#009933"))
+                } else if (currentScoreNumber < lastScore) {
+                    currentScoreTextView.setTextColor(Color.parseColor("#ff3300"))
+                } else {
+                    currentScoreTextView.setTextColor(Color.parseColor("#ffcc66"))
+                }
             }
 
             //fetch Records
@@ -39,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         val currentScoreModel = CurrentScore()
         currentScoreModel.quizBatch = 0
         currentScoreModel.score = 0
+        currentScoreModel.previous_score = 0
 
         database.currentScoreDao.insert(currentScoreModel)
     }

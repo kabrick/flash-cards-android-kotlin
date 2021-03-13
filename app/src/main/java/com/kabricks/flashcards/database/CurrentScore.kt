@@ -10,7 +10,10 @@ data class CurrentScore (
     var id: Long = 0L,
 
     @ColumnInfo(name = "score")
-    var score: Int = -1,
+    var score: Int = 0,
+
+    @ColumnInfo(name = "previous_score")
+    var previous_score: Int = 0,
 
     @ColumnInfo(name = "quiz_batch")
     var quizBatch: Int = 0
