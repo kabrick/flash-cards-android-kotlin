@@ -1,6 +1,5 @@
 package com.kabricks.flashcards.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -24,5 +23,5 @@ interface CardDao {
     fun getLastRecord(): Card?
 
     @Query("SELECT * FROM cards ORDER BY id DESC")
-    fun getAllRecords(): LiveData<List<Card>>
+    fun getAllRecords(): List<Card>
 }

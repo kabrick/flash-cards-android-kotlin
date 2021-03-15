@@ -38,12 +38,6 @@ class MainActivity : AppCompatActivity() {
                     currentScoreTextView.setTextColor(Color.parseColor("#ffcc66"))
                 }
             }
-
-            //fetch Records
-            /*db.bookDao().getAllBooks().forEach() {
-                Log.i("Fetch Records", "Id:  : ${it.bookId}")
-                Log.i("Fetch Records", "Name:  : ${it.bookName}")
-            }*/
         }
         thread.start()
     }
@@ -59,5 +53,9 @@ class MainActivity : AppCompatActivity() {
 
     fun addCard(view: View) {
         startActivity(Intent(this, AddCardActivity::class.java))
+    }
+
+    fun manageCards(view: View) {
+        startActivity(Intent(this, ManageCardsActivity::class.java))
     }
 }
