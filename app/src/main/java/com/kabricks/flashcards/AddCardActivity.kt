@@ -39,7 +39,11 @@ class AddCardActivity : AppCompatActivity() {
             card.quiz_batch = 0
 
             FlashCardsDatabase.getInstance(this).cardDao.insert(card)
-            Toast.makeText(this, "Card has been added successfully", Toast.LENGTH_LONG).show()
+
+            this.runOnUiThread(Runnable {
+                Toast.makeText(this, "Card has been added successfully", Toast.LENGTH_LONG).show()
+            })
+
             startActivity(Intent(this, MainActivity::class.java))
         }
 
