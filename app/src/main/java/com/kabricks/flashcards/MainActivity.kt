@@ -58,4 +58,8 @@ class MainActivity : AppCompatActivity() {
     fun manageCards(view: View) {
         startActivity(Intent(this, ManageCardsActivity::class.java))
     }
+
+    fun takeQuiz(view: View) {
+        startActivity(Intent(this, TakeQuizActivity::class.java))
+    }
 }

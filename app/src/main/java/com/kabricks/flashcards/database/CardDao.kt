@@ -24,4 +24,10 @@ interface CardDao {
 
     @Query("SELECT * FROM cards ORDER BY id DESC")
     fun getAllRecords(): List<Card>
+
+    @Query("SELECT * FROM cards WHERE quiz_batch != :key")
+    fun getNewCards(key: Int): List<Card>
+
+    @Query("SELECT * FROM cards ORDER BY quiz_batch ASC LIMIT 10")
+    fun getTenCards(): List<Card>
 }

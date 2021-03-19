@@ -46,6 +46,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.1"
         android:text="Take Quiz"
-        android:layout_marginStart="5dp"/>
+        android:layout_marginStart="5dp"
+        android:onClick="takeQuiz"/>
 
 </LinearLayout>
