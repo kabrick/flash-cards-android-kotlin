@@ -65,4 +65,8 @@ class DisplayQuizScoreActivity : AppCompatActivity() {
     fun goToDashboard(view: View) {
         startActivity(Intent(this, MainActivity::class.java))
     }
+
+    fun retryQuiz(view: View) {
+        startActivity(Intent(this, TakeQuizActivity::class.java))
+    }
 }
