@@ -6,11 +6,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kabricks.flashcards.database.FlashCardsDatabase
-import kotlin.concurrent.thread
 
 class ManageCardsActivity : AppCompatActivity() {
     private val cardList = ArrayList<CardModel>()
-    private lateinit var manageCardsAdapter: ManageCardsAdapter
+    private lateinit var cardsAdapter: CardsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,11 +19,11 @@ class ManageCardsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val recyclerView: RecyclerView = findViewById(R.id.manage_cards_recycler_view)
-        manageCardsAdapter = ManageCardsAdapter(cardList)
+        cardsAdapter = CardsAdapter(cardList)
         val layoutManager = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = layoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.adapter = manageCardsAdapter
+        recyclerView.adapter = cardsAdapter
 
         val thread = Thread {
             //fetch Records
@@ -36,7 +35,7 @@ class ManageCardsActivity : AppCompatActivity() {
                     cardList.add(card)
                 }
 
-            manageCardsAdapter.notifyDataSetChanged()
+            cardsAdapter.notifyDataSetChanged()
         }
 
         thread.start()

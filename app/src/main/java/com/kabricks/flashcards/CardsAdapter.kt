@@ -7,8 +7,8 @@ import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 
-class ManageCardsAdapter(private var cardsList: List<CardModel>) :
-    RecyclerView.Adapter<ManageCardsAdapter.MyViewHolder>() {
+class CardsAdapter(private var cardsList: List<CardModel>) :
+    RecyclerView.Adapter<CardsAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var listQuestion: TextView = view.findViewById(R.id.list_question)

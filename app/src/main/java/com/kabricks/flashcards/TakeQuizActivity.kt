@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.google.android.material.textfield.TextInputLayout
 import com.kabricks.flashcards.database.Card
 import com.kabricks.flashcards.database.FlashCardsDatabase
+import java.util.ArrayList
 
 class TakeQuizActivity : AppCompatActivity() {
     lateinit var database: FlashCardsDatabase
@@ -23,6 +24,7 @@ class TakeQuizActivity : AppCompatActivity() {
     private lateinit var correctAnswerContainer: TextInputLayout
     private lateinit var nextCardButton: Button
     private var batch: Int = 0
+    private var answersStatus: MutableList<QuizStatusModel> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,11 +82,17 @@ class TakeQuizActivity : AppCompatActivity() {
                 intent.putExtra("score", currentUserScore)
                 intent.putExtra("number_of_questions", totalCards)
                 intent.putExtra("batch", batch)
+                intent.putExtra("quiz_status", ArrayList(answersStatus))
                 startActivity(intent)
             }
         } else {
-            if (yourAnswerTextView.text.toString().equals(correctAnswerTextView.text.toString())) {
+            if (yourAnswerTextView.text.toString() == correctAnswerTextView.text.toString()) {
                 currentUserScore++
+                answersStatus.add(QuizStatusModel(questions[0].question, yourAnswerTextView.text.toString(),
+                        questions[0].answer, true))
+            } else {
+                answersStatus.add(QuizStatusModel(questions[0].question, yourAnswerTextView.text.toString(),
+                        questions[0].answer, false))
             }
 
             // check for the correct answer here
